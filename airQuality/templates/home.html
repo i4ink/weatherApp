@@ -2,6 +2,92 @@
 
 {% block content %}
 
-<h2>hello world!!</h2>
+
+<br/>
+{% if res %}
+	{% if res == "error..." %}
+		There was an error, please try again...
+	{% else %}
+
+    <div class="row" style="text-align: center;">
+        <div class="mx-auto d-flex bd-highlight">
+            <div class="p-2 flex-grow-1 bd-highlight fw-bold"><h2 style="color: #fd7e14 ;">Current Air Quality Index At {{res.city_name}}, {{country}}</h2></div>
+        </div>
+    </div>
+    </br>
+
+    <div class="row">
+        <!-- <div class="card" style="width: 20rem;"> -->
+        <div class="card w-50 mx-auto card-color"  >
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-body">
+            <div class="card-title">
+                <div class=" d-flex bd-highlight" >
+                    <!-- <div class="{{category_color}}"> -->
+                        <div class=" aqiGoodHead p-2 bd-highlight {{category_color}}"><h2 style="color: white;">{{res.data.0.aqi}}</h2></div>
+                        <div class="p-2 flex-grow-1 bd-highlight "><h3 class="txt{{category_color}}">{{quality}}</h3></div>
+                    <!-- </div> -->
+                </div>
+            </div>
+            <!-- <div class="{{category_color}}" >
+                <h3 class="card-title">{{res.data.0.aqi}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{quality}}</h3>
+            </div> -->
+            <p class="card-text">{{desc}}</p>
+
+            <ul class=" card-color list-group list-group-flush">
+                <!-- <li class="list-group-item {{category_color}}">{{quality}}</li> -->
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 bd-highlight">o3 : </div>
+                    <div class="p-2 flex-grow-1 bd-highlight">{{res.data.0.o3}}</div>
+                </div>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 bd-highlight">pm25 : </div>
+                    <div class="p-2 flex-grow-1 bd-highlight">{{res.data.0.pm25}}</div>
+                </div>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 bd-highlight">pm10 : </div>
+                    <div class="p-2 flex-grow-1 bd-highlight">{{res.data.0.pm10}}</div>
+                </div>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 bd-highlight">so2 : </div>
+                    <div class="p-2 flex-grow-1 bd-highlight">{{res.data.0.so2}}</div>
+                </div>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 bd-highlight">co : </div>
+                    <div class="p-2 flex-grow-1 bd-highlight">{{res.data.0.co}}</div>
+                </div>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 bd-highlight"><h6><a href="https://www.airnow.gov/aqi/aqi-basics/" target="_blank" rel="noopener noreferrer" >refer here</a> to know more about AQI</h5></div>
+                </div>
+                <!-- <div class="position-absolute bottom-0 start-50 translate-middle-x">
+                    <h6><a href="https://www.airnow.gov/aqi/aqi-basics/" target="_blank" rel="noopener noreferrer" >refer here</a> to know more about AQI</h5>
+                </div> -->
+            </ul>
+        </div>
+        </div>
+    </div>
+    </br>
+
+    <div class="mx-auto d-flex bd-highlight" >
+      <h5><a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer" >click here</a> to find your latitude and longitude</h5>
+    </div>
+
+
+<!-- <div class="jumbotron {{ category_color }}">
+  <h1 class="display-4">{{ api.0.Category.Name }}</h1>
+  <p class="lead">Current {{ api.0.ReportingArea }} Air Quality: {{ api.0.AQI }}</p>
+  
+  <p>{{ category_description }}</p>
+
+
+  <p>{{out}}</p>
+  
+  
+</div> -->
+		
+	{% endif %}
+
+{% endif %}
+
 
 {% endblock %}

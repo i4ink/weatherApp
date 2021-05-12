@@ -9,10 +9,41 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 
     <title>Base html</title>
+    <style>
+    	/* .card-color {background-color: #f6f9f7;} */
+    	.card-color {background-color: #6cf5de;}
+    	.good {background-color: #0C0;}
+    	.moderate {background-color: #FFFF00;}
+    	.usg {background-color: #FF9900;}
+    	.unhealthy {background-color: #FF0000;}
+    	.veryunhealthy {background-color: #990066;}
+    	.hazardous {background-color: #660000;}
+
+    	.txtgood {color: #0C0;}
+    	.txtmoderate {color: #FFFF00;}
+    	.txtusg {color: #FF9900;}
+    	.txtunhealthy {color: #FF0000;}
+    	.txtveryunhealthy {color: #990066;}
+    	.txthazardous {color: #660000;}
+
+      .aqiGoodHead {
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.2);
+        margin-top: 2px;
+        margin-bottom: 2px;
+        text-align: center;
+        text-shadow: 1px 0 1px #000;
+        font-size: 72px;
+        color: #fff;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      .btnstyle:hover {background: green;}
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <a class="navbar-brand" href="{% url 'home'%}">WeatherApp</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -24,9 +55,14 @@
             <a class="nav-link" href="{% url 'about'%}">About me</a>
             </li>
         </ul>
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+        <form action="{% url 'home' %}" class="form-inline mx-auto my-auto" method="POST">
+            {% csrf_token %}
+            <!-- used d-flex from bootstrap to make two inline form input box in navbar -->
+            <div class="d-flex flex-row bd-highlight">
+                <input class="form-control mx-auto mr-sm-2" type="search" placeholder="Enter latitude" aria-label="Search" name="latitude">
+                <input class="form-control mr-sm-2" type="search" placeholder="Enter longitude" aria-label="Search" name="longitude">
+                <button  class=" btnstyle btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+            </div>
         </form>
         </div>
     </div>
@@ -41,6 +77,10 @@
 
     {% endblock%}
     </div>
+
+    <!-- <div class="position-absolute bottom-0 start-50 translate-middle-x">
+      <h5><a href="https://www.latlong.net/" target="_blank" rel="noopener noreferrer" >click here</a> to find your latitude and longitude</h5>
+    </div> -->
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
